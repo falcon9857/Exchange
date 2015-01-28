@@ -19,7 +19,7 @@ def Input_Curr(Input):
         return float(data[Input])
     else:
         print "Error: Not Found"
-        Input_Curr(str(raw_input("What Currency?")))
+        Input_Curr(raw_input("What Currency?"))
 
 def Input_Value(Value):
     try:
