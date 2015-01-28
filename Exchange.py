@@ -46,9 +46,6 @@ def Output_Curr(Output):
         Output_Curr(raw_input("Into What?"))
 
 def Output_Value():
-    print InputCurr
-    print InputVal
-    print OutputCurr
     return round((float(1) / InputCurr) * InputVal * OutputCurr,2)
 
 
