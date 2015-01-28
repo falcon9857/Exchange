@@ -12,44 +12,43 @@ data = data.pop(0)
 
 print "Data retrieved at: %s" % data["DateTime"]
 
-def Input_Curr(Input):
-    str(Input)
-    if Input in data:
-        print "Accepted"
-        return float(data[Input])
-    else:
-        print "Error: Not Found"
-        Input_Curr(raw_input("What Currency?"))
+def Input_Curr():
+    global Input
+    Input = str(raw_input("What currency are you coverting FROM?"))
+    while Input.upper() not in data:
+        print "Invalid Currency"
+        Input = str(raw_input("What currency are you coverting FROM?"))
+    print "Accepted: ", Input.upper()
+    return float(data[Input.upper()])
 
-def Input_Value(Value):
-    try:
-        float(Value)
-    except ValueError:
-        print "Error"
-        Input_Value(raw_input("ValueError: How Much?"))
-    if Value <= 0:
-        Input_Value(raw_input("Error: How Much?"))
-    if Value == type(int) or type(float):
-        print "Accepted"
-        return float(Value)
-    else:
-        print "No Good"
-        Input_Value(raw_input("Error: How Much?"))
-        
-def Output_Curr(Output):
-    str(Output)
-    if Output in data:
-        print "Accepted"
-        return float(data[Output])
-    else:
-        print "Error: Not Found"
-        Output_Curr(raw_input("Into What?"))
+
+def Input_Value():
+    global Value
+    Value = raw_input("How much are you converting?")
+    while True:
+        try:
+            float(Value)
+            print "Accepted: ", Value
+            return float(Value)
+        except ValueError:
+            print "Invalid Input"
+            Value = raw_input("How much are you converting?")
+            
+   
+def Output_Curr():
+    global Output
+    Output = str(raw_input("What currency are you coverting TO?"))
+    while Output.upper() not in data:
+        print "Invalid Currency"
+        Output = str(raw_input("What currency are you coverting TO?"))
+    print "Accepted: ", Output.upper()
+    return float(data[Output.upper()])
 
 def Output_Value():
     return round((float(1) / InputCurr) * InputVal * OutputCurr,2)
 
+InputCurr = Input_Curr()
+OutputCurr = Output_Curr()
+InputVal = Input_Value()
+print Value, Input, " = ", Output_Value(), Output
 
-InputCurr = Input_Curr(raw_input("What Currency?"))
-OutputCurr = Output_Curr(raw_input("Into What?"))
-InputVal = Input_Value(raw_input("How Much?"))
-print Output_Value()
